@@ -1,0 +1,19 @@
+# https://site.financialmodelingprep.com/developer/docs#earnings-transcripts -> Provides transcripts to earnings calls, which can be a great source of analysis.
+
+# IDEA
+
+# Create a website where you can create an account and subscribe to a number of companies to create automated ai reports for.
+# Once you subsribe to a company. Your dashboard will populate with the latest news updates and analysis made with ai.
+
+# The program will monitor new updates for the companies that you've subscribed to and generate a report which you will receive in your email inbox.
+
+# 3/8/2025
+# The news feed is working well but can be improved.
+# 1. I don't think we need the company name
+# 2. Perhaps a time and date for the update is appropriate, and perhaps a news source. I need to see what data is deliverd via the api call.
+#
+# There are quite a lot of inconsistencies regarding engels/dutch in the code and even on the website. There is some redundant code that I'm not using anymore like the older helper functions.
+#
+# The company list could look better
+
+# You can still see the remnants of finance, for instance when you fail to enter a password, it redirects to the apology, which works.

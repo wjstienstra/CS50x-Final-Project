@@ -1,0 +1,87 @@
+/* Logo Styling */
+.navbar-brand .logo-main {
+    font-family: 'Poppins', sans-serif; /* Use Poppins font */
+    font-weight: 700; /* Bold */
+    font-size: 2.5rem; /* Make it much bigger */
+    letter-spacing: 1px;
+    line-height: 1;
+}
+
+.navbar-brand .logo-subtitle {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.6rem; /* Keep this small */
+    margin-top: -5px; /* Pull it up closer */
+    color: #6c757d; /* A muted color */
+    letter-spacing: 0.5px;
+}
+
+/* --- Ticker Tape Styling --- */
+
+.ticker-wrap {
+    width: 100%;
+    overflow: hidden;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+    padding: 5px 0;
+}
+
+.ticker {
+    display: inline-block;
+    white-space: nowrap; /* This is the key to keeping everything on one line */
+    padding-left: 100%;
+    animation: ticker 30s linear infinite;
+}
+
+.ticker__item {
+    display: inline-block; /* This allows items to sit next to each other */
+    padding: 0 2rem;
+    font-size: 0.9rem;
+}
+
+@keyframes ticker {
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+    100% {
+        transform: translate3d(-100%, 0, 0);
+    }
+}
+
+/* Style for the search results overlay */
+#search-results {
+    position: absolute;
+    width: 100%;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-top: none;
+    z-index: 10;
+    display: none; /* Hidden by default */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    border-radius: 0 0 .25rem .25rem;
+}
+
+.search-result-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1.25rem;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+}
+
+.search-result-item:last-child {
+    border-bottom: none;
+}
+
+.search-result-item:hover {
+    background-color: #f8f9fa;
+}
+
+/* A little extra spacing for the newsfeed */
+.article-card {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #eee;
+}
+
+

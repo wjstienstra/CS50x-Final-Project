@@ -1,0 +1,84 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Dashboard
+{% endblock %}
+
+{% block main %}
+<div class="container-fluid py-4">
+    <div class="row">
+
+        <!-- LEFT COLUMN: AI-Powered Feed -->
+        <div class="col-md-8 pe-md-4">
+            <h2 class="text-start">AI Summaries</h2>
+                <p class="text-muted">Prevent long loading times, limit the number of companies to follow.</p>
+            <hr>
+
+            {% if dashboard_data %}
+                {% for item in dashboard_data %}
+                    <div class="article-card d-flex align-items-start text-start">
+                        {% if item.logo %}
+                            <img src="{{ item.logo }}" alt="{{ item.company_name }} Logo" class="me-3" style="width: 48px; height: 48px; border-radius: 50%;">
+                        {% else %}
+                            <!-- Fallback placeholder if no logo -->
+                             <div class="me-3 d-flex align-items-center justify-content-center" style="width: 48px; height: 48px; border-radius: 50%; background-color: #eee; text-align: center; line-height: 48px; font-weight: bold;">
+                                {{ item.symbol[:3] }}
+                            </div>
+                        {% endif %}
+
+                        <!-- Text content on the right -->
+                        <div>
+                            <small class="text-muted fw-bold">{{ item.symbol }}</small>
+                            <p class="text-muted small">Latest update: {{ item.updated_at }}</p>
+                            <p>{{ item.summary }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+
+            {% else %}
+                <div class="alert alert-info">
+                    You don't follow any companies yet, search for companies to follow
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- RIGHT COLUMN: Search and followed companies -->
+        <div class="col-md-4 ps-md-4">
+
+            <!-- Search function -->
+            <div class="position-relative mb-4">
+                <h4>Search for a company</h4>
+                <input type="text" id="search-input" class="form-control" placeholder="Type a company name or symbol..." autocomplete="off">
+                <div id="search-results">
+                    <!-- JavaScript vult dit dynamisch -->
+                </div>
+            </div>
+
+            <!-- List of followed companies -->
+            <h4>Companies I follow</h4>
+            <ul class="list-group">
+                {% for sub in subscriptions %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+
+                        <!-- Container for Logo and Name -->
+                        <div class="d-flex align-items-center">
+                            <!-- Display the logo if it exists -->
+                            {% if sub.logo %}
+                                <img src="{{ sub.logo }}" alt="{{ sub.company_name }} Logo" style="width: 32px; height: 32px; border-radius: 50%; margin-right: 10px;">
+                            {% endif %}
+                            <span>{{ sub.company_name }}</span>
+                        </div>
+
+                        <form action="/unsubscribe" method="post" class="ms-2">
+                            <input type="hidden" name="symbol" value="{{ sub.company_symbol }}">
+                            <button type="submit" class="btn btn-sm btn-outline-danger">X</button>
+                        </form>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script src="/static/js/dashboard.js"></script>
+{% endblock %}
